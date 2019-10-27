@@ -7,7 +7,7 @@ from vk_api.longpoll import VkLongPoll, VkEventType
 def write_msg(user_id, message):
 	vk.method('messages.send', {'user_id': user_id, 'message': message, 'random_id': random.randint(0, 2048)})
 
-# API-ключb созданные ранее
+# API-ключи созданные ранее
 owm = pyowm.OWM('OWM Token...', language='ru')
 token = "VK group Token..."
 
