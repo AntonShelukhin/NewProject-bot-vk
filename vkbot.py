@@ -21,11 +21,11 @@ print("Бот запущен")
 # Основной цикл
 while True:
 	for event in longpoll.listen():
-    # Если пришло новое сообщение
+    		# Если пришло новое сообщение
 		if event.type == VkEventType.MESSAGE_NEW:
-        # Если оно имеет метку для меня (то есть бота)
+        		# Если оно имеет метку для меня (то есть бота)
 			if event.to_me:
-            # Сообщение от пользователя
+            			# Сообщение от пользователя
 				request = event.text
 				# Исключение для ошибок
 				try:	
@@ -44,7 +44,7 @@ while True:
 					else:
 						answer += 'Наслаждаемся летом!'
 
-		            # Каменная логика ответа
+					# Каменная логика ответа
 					if request == event.text:
 						write_msg(event.user_id, answer)
 
