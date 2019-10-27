@@ -7,28 +7,28 @@ from vk_api.longpoll import VkLongPoll, VkEventType
 def write_msg(user_id, message):
 	vk.method('messages.send', {'user_id': user_id, 'message': message, 'random_id': random.randint(0, 2048)})
 
-# API-ключи созданные ранее
+# API-keys
 owm = pyowm.OWM('OWM Token...', language='ru')
 token = "VK group Token..."
 
-# Авторизуемся как сообщество
+# Authorization as a community
 vk = vk_api.VkApi(token=token)
 
-# Работа с сообщениями
+# Messaging
 longpoll = VkLongPoll(vk)
 
-# Основной цикл
+# Main cycle
 while True:
 	for event in longpoll.listen():
-    		# Если пришло новое сообщение
+    		# If a new message arrives
 		if event.type == VkEventType.MESSAGE_NEW:
-        		# Если оно имеет метку для меня (то есть бота)
+        		# If it has a label for me (i.e. bot)
 			if event.to_me:
-            			# Сообщение от пользователя
+            			# Message from user
 				request = event.text
-				# Исключение для ошибок
+				# Error exception
 				try:	
-					# Запрос погоды	
+					# Weather request
 					observation = owm.weather_at_place(event.text)
 					w = observation.get_weather()
 					temp = w.get_temperature('celsius')["temp"]
@@ -43,7 +43,7 @@ while True:
 					else:
 						answer += 'Наслаждаемся летом!'
 
-					# Каменная логика ответа
+					# Response logic
 					if request == event.text:
 						write_msg(event.user_id, answer)
 
