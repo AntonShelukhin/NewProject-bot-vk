@@ -8,8 +8,8 @@ def write_msg(user_id, message):
 	vk.method('messages.send', {'user_id': user_id, 'message': message, 'random_id': random.randint(0, 2048)})
 
 # API-ключb созданные ранее
-owm = pyowm.OWM('ff6b560049d6c96e62037ce30febce4e', language='ru')
-token = "1fa4b605de1af0c135cb60af293ed0f34f35dc9ab950ac4f452c1cb2c8994d6d88ae105db5b8bc2b9e21f"
+owm = pyowm.OWM('OWM Token...', language='ru')
+token = "VK group Token..."
 
 # Авторизуемся как сообщество
 vk = vk_api.VkApi(token=token)
