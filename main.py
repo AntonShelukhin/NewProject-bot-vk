@@ -18,34 +18,39 @@ vk = vk_api.VkApi(token=token)
 longpoll = VkLongPoll(vk)
 
 # Main cycle
-while True:
-	for event in longpoll.listen():
-    		# If a new message arrives
-		if event.type == VkEventType.MESSAGE_NEW:
-        		# If it has a label for me (i.e. bot)
-			if event.to_me:
-            			# Message from user
-				request = event.text
-				# Error exception
-				try:	
-					# Weather request
-					observation = owm.weather_at_place(event.text)
-					w = observation.get_weather()
-					temp = w.get_temperature('celsius')["temp"]
-					
-					answer = 'В городе ' + event.text + ' сейчас ' + w.get_detailed_status() + '.' + '\n'
-					answer += 'Температура в районе ' + str(temp) + '.' + '\n\n'
+def main():
+    if __name__ == '__main__':
 
-					if temp < 10:
-						answer += 'Сейчас холодно! Ты что, хочешь маму расстроить?'
-					elif temp < 20:
-						answer += 'Погода более менее, можешь одевать кросы!'
-					else:
-						answer += 'Наслаждаемся летом!'
+	while True:
+		for event in longpoll.listen():
+			# If a new message arrives
+			if event.type == VkEventType.MESSAGE_NEW:
+				# If it has a label for me (i.e. bot)
+				if event.to_me:
+					# Message from user
+					request = event.text
+					# Error exception
+					try:	
+						# Weather request
+						observation = owm.weather_at_place(event.text)
+						w = observation.get_weather()
+						temp = w.get_temperature('celsius')["temp"]
 
-					# Response logic
-					if request == event.text:
-						write_msg(event.user_id, answer)
+						answer = 'В городе ' + event.text + ' сейчас ' + w.get_detailed_status() + '.' + '\n'
+						answer += 'Температура в районе ' + str(temp) + '.' + '\n\n'
 
-				except Exception:
-					write_msg(event.user_id, 'Введите корректное название города.')
+						if temp < 10:
+							answer += 'Сейчас холодно! Ты что, хочешь маму расстроить?'
+						elif temp < 20:
+							answer += 'Погода более менее, можешь одевать кросы!'
+						else:
+							answer += 'Наслаждаемся летом!'
+
+						# Response logic
+						if request == event.text:
+							write_msg(event.user_id, answer)
+
+					except Exception:
+						write_msg(event.user_id, 'Введите корректное название города.')
+
+main()
