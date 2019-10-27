@@ -17,7 +17,6 @@ vk = vk_api.VkApi(token=token)
 # Работа с сообщениями
 longpoll = VkLongPoll(vk)
 
-print("Бот запущен")
 # Основной цикл
 while True:
 	for event in longpoll.listen():
