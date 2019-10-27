@@ -17,7 +17,7 @@ python 3.7
 $ pip install requirements.txt
 ```
 
- - Run project using command.
+ - Run project using file name.
 
 ## Authors
 * **Anton Shelukhin** - *Initial work* - [Anton Shelukhin](https://gitlab.com/AntonShelukhin/)
