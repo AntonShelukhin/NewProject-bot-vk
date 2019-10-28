@@ -1,6 +1,6 @@
-# BTF Trace validator
+# Vk bot
 
-Class that validates given BTF trace and write all errors to given file.txt
+Bot sending an reply to user message with weather parameters
 
 ### Prerequisites
 
